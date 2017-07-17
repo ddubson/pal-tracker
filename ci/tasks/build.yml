@@ -8,7 +8,6 @@ image_resource:
 
 inputs:
   - name: pal-tracker
-  - name: version
 
 outputs:
   - name: build-output
@@ -19,5 +18,5 @@ run:
   - -exc
   - |
     cd pal-tracker
-    ./gradlew -P version=`cat ../version/number` build
-    cp build/libs/pal-tracker-*.jar ../build-output
+    ./gradlew clean build
+    cp build/libs/pal-tracker.jar ../build-output
