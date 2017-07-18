@@ -18,7 +18,7 @@ resources:
     space: {{review-space}}
 
 jobs:
-- name: build-and-deploy
+- name: review-deployment
   plan:
   - get: pal-tracker
     trigger: true
