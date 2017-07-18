@@ -25,6 +25,7 @@ repositories {
 }
 
 dependencies {
+    compile("org.springframework.boot:spring-boot-starter-actuator")
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-jdbc")
     compile("org.mariadb.jdbc:mariadb-java-client:2.0.2")
@@ -37,7 +38,8 @@ def test_db_url = "jdbc:mariadb://localhost:3306/tracker_test?user=tracker"
 
 bootRun.environment([
         "WELCOME_MESSAGE": "Welcome",
-        "SPRING_DATASOURCE_URL": development_db_url
+        "SPRING_DATASOURCE_URL": development_db_url,
+        "MANAGEMENT_SECURITY_ENABLED": "false"
 ])
 
 test.environment([

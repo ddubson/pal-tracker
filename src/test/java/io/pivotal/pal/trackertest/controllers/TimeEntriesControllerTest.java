@@ -1,10 +1,12 @@
 package io.pivotal.pal.trackertest.controllers;
 
 import io.pivotal.pal.tracker.TimeEntry;
-import io.pivotal.pal.tracker.repositories.TimeEntryRepository;
 import io.pivotal.pal.tracker.controllers.TimeEntriesController;
+import io.pivotal.pal.tracker.repositories.TimeEntryRepository;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.boot.actuate.metrics.CounterService;
+import org.springframework.boot.actuate.metrics.GaugeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -14,18 +16,20 @@ import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 public class TimeEntriesControllerTest {
     TimeEntryRepository timeEntryRepository;
     TimeEntriesController controller;
+    private CounterService counter;
+    private GaugeService gauge;
 
     @Before
     public void setUp() throws Exception {
         timeEntryRepository = mock(TimeEntryRepository.class);
-        controller = new TimeEntriesController(timeEntryRepository);
+        counter = mock(CounterService.class);
+        gauge = mock(GaugeService.class);
+        controller = new TimeEntriesController(timeEntryRepository, counter, gauge);
     }
 
     @Test
