@@ -7,7 +7,7 @@ resources:
     branch: master
     private_key: {{github-private-key}}
 
-- name: deploy
+- name: review-deployment
   type: cf
   source:
     api: https://api.sys.longs.pal.pivotal.io
@@ -15,7 +15,7 @@ resources:
     username: {{deploy-username}}
     password: {{deploy-password}}
     organization: {{deploy-org}}
-    space: {{deploy-space}}
+    space: {{review-space}}
 
 jobs:
 - name: build-and-deploy
@@ -24,9 +24,9 @@ jobs:
     trigger: true
   - task: build and test
     file: pal-tracker/ci/tasks/build.yml
-  - put: deploy
+  - put: review-deployment
     params:
-      manifest: pal-tracker/manifest.yml
+      manifest: pal-tracker/ci/deployments/manifest-review.yml
       path: build-output/pal-tracker.jar
       environment_variables:
-        WELCOME_MESSAGE: "Hello from Concourse"
+        WELCOME_MESSAGE: "Hello from review environment"
