@@ -20,3 +20,11 @@ dependencies {
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
+
+bootRun.environment([
+        "WELCOME_MESSAGE": "Welcome"
+])
+
+test.environment([
+        "WELCOME_MESSAGE": "Welcome"
+])

@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class TrackerController {
-
     private final String welcomeMessage;
 
     public TrackerController(@Value("${WELCOME_MESSAGE}") String welcomeMessage) {
