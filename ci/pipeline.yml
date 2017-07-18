@@ -71,6 +71,7 @@ jobs:
       path: pal-tracker-artifacts/pal-tracker-*.jar
       environment_variables:
         WELCOME_MESSAGE: "Hello from the review environment"
+        MANAGEMENT_SECURITY_ENABLED: "false"
 
 - name: deploy-production
   plan:
@@ -83,3 +84,4 @@ jobs:
       path: pal-tracker-artifacts/pal-tracker-*.jar
       environment_variables:
         WELCOME_MESSAGE: "Hello from the production environment"
+        MANAGEMENT_SECURITY_ENABLED: "false"
